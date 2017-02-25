@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../static/bootstrap/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <h2>helloworld</h2>
+        <form id="form">
+            <p><span>用户名：</span>
+                <input type="text" name="username">
+            </p>
+            <p>
+                <input type="file" name='pic'>
+            </p>
+            <p>
+                <button type="button">上传</button>
+            </p>
+        </form>
+    </div>
+</body>
+
+</html>
+<script src="../../static/jquery-1.12.3.js"></script>
+<script>
+$('button').click(
+	function(){
+		btnAdd();
+	});
+function btnAdd() {
+ var formData = new FormData($("#form")[0]);
+ // var formData = $('#form').serialize();
+    $.ajax({
+        url: "upload.php",
+        type: "POST",
+        data: formData,
+        contentType: false, //必须false才会避开jQuery对 formdata 的默认处理 XMLHttpRequest会对 formdata 进行正确的处理
+        processData: false, //必须false才会自动加上正确的Content-Type
+        success: function(data) {
+            console.log(data)
+        }
+    });
+}
+</script>
