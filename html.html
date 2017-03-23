@@ -1,0 +1,28 @@
+<!--
+	替换url中的相应参数的值为新值，传参后url会跳转到新值 构成的url
+-->
+<script>
+    $('#year').change(function() {
+        year_num = $(this).val();
+        redirectUrl('year', year_num)
+    });
+
+
+//替换当前参数的值为新值，然后跳转url
+function redirectUrl(key, value) {
+    var current_url = window.location.href;
+    var is_have_param = /\?/;
+    if (is_have_param.test(current_url) === true) {
+        var is_have_value = eval('/' + key + '/');
+        if (is_have_value.test(current_url) === false) {
+            window.location.href = current_url + '&' + key + '=' + value;
+        } else {
+            replace_param = eval('/' + key + '=(\\d)+/i');
+            current_url = current_url.replace(replace_param, key + "=" + value)
+            window.location.href = current_url;
+        }
+    } else {
+        window.location.href = current_url + '?' + key + '=' + value;
+    }
+}
+</script>
