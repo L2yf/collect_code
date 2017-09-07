@@ -11,7 +11,7 @@
 	echo str_pad($input, 10, "-=", STR_PAD_LEFT);  // 输出 "-=-=-Alien"
 ```
 
-
+```php
 // 九个一组 的组合
 // $list 是个二维数组
 $i = 1;
@@ -23,3 +23,4 @@ foreach ($list as $key => $value) {
     }
     $i++;
 }
+```
