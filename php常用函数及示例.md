@@ -60,3 +60,14 @@ for($i=1;$i<100;$i++){
       // sit minima sint.
 }
 ```
+
+### php zip打包
+```
+$zip = new ZipArchive();//新建一个对象
+$zip_file_name =$path.'/xml.zip';
+$add_file_name = $path.'/collage.xml';
+if ($zip->open($zip_file_name, ZipArchive::OVERWRITE) === TRUE) {
+    $zip->addFile($add_file_name,$date.".xml");//在zip更目录添加一个文件,并且命名为in.html,第二个参数可以省略
+    $zip->close();//关闭资源句柄
+}
+```
