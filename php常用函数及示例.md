@@ -67,7 +67,8 @@ for($i=1;$i<100;$i++){
 	$zip_file_name =$path.'/xml.zip';
 	$add_file_name = $path.'/collage.xml';
 	if ($zip->open($zip_file_name, ZipArchive::OVERWRITE) === TRUE) {
-	    $zip->addFile($add_file_name,$date.".xml");//在zip更目录添加一个文件,并且命名为in.html,第二个参数可以省略
+	    $zip->addFile($add_file_name,$date.".xml");
+	    //在zip更目录添加一个文件,并且命名为in.html,第二个参数可以省略
 	    $zip->close();//关闭资源句柄
 	}
 ```
@@ -81,9 +82,9 @@ for($i=1;$i<100;$i++){
 	    curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false); //不验证证书
 	    curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false); //不验证证书
 	    //设置头文件的信息作为数据流输出
-	    curl_setopt($curl, CURLOPT_HEADER, 0);					//不输出头文件内容 0：表示不输出
+	    curl_setopt($curl, CURLOPT_HEADER, 0); //不输出头文件内容 0：表示不输出
 	    //设置获取的信息以文件流的形式返回，而不是直接输出。
-	    curl_setopt($curl, CURLOPT_RETURNTRANSFER, 0);			//网页内容是否展示在浏览器上，0表示展示
+	    curl_setopt($curl, CURLOPT_RETURNTRANSFER, 0); //网页内容是否展示在浏览器上，0表示展示
 	    //设置post方式提交
 	    curl_setopt($curl, CURLOPT_POST, 1);
 	    //设置post数据
