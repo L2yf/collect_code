@@ -72,7 +72,49 @@ for($i=1;$i<100;$i++){
 	    $zip->close();//关闭资源句柄
 	}
 ```
+>> 更多解释
+```php 
+	<?php
 
+	$zip = new ZipArchive();//新建一个对象
+
+	/* 
+	$zip->open这个方法第一个参数表示处理的zip文件名。 
+	第二个参数表示处理模式，ZipArchive::OVERWRITE表示如果zip文件存在，
+	就覆盖掉原来的zip文件。 如果参数使用ZIPARCHIVE::CREATE，
+	系统就会往原来的zip文件里添加内容。 如果不是为了多次添加内容到zip文件，
+	建议使用ZipArchive::OVERWRITE。 使用这两个参数，如果zip文件不存在，
+	系统都会自动新建。 如果对zip文件对象操作成功，$zip->open这个方法会返回TRUE
+	*/
+	$zip_file_name = 'demo.zip';
+	$add_file_name = 'ehr20170716000313.xml';
+	if ($zip->open($zip_file_name, ZipArchive::OVERWRITE) === TRUE) {
+
+	    /* ZipArchive类中的所有属性*/
+	    echo $zip->status;//Zip Archive 的状态
+	    echo $zip->statusSys;//Zip Archive 的系统状态
+	    echo $zip->numFiles;//压缩包里的文件数
+	    echo $zip->filename;//在文件系统里的文件名，包含绝对路径
+	//    echo $zip->comment;//压缩包的注释
+
+	    /* ZipArchive类中的常用方法*/
+	//    $zip->addEmptyDir('css');//在zip压缩包中建一个空文件夹，成功时返回 TRUE， 或者在失败时返回 FALSE
+	    $zip->addFile($add_file_name);//在zip更目录添加一个文件,并且命名为in.html,第二个参数可以省略
+	//    $zip->addFile('index.html','in.html');//在zip更目录添加一个文件,并且命名为in.html,第二个参数可以省略
+	//    $zip->addFromString('in.html','hello world');//往zip中一个文件中添加内容
+	//    $zip->extractTo('/tmp/zip/');//解压文件到/tmp/zip/文件夹下面
+	//    $zip->renameName('in.html','index.html');//重新命名zip里面的文件
+	//    $zip->setArchiveComment('Do what you love,Love what you do.');//设置压缩包的注释
+	//    $zip->getArchiveComment();//获取压缩包的注释
+	//    $zip->getFromName('index.html');//获取压缩包文件的内容
+	//    $zip->deleteName('index.html');//删除文件
+	//    $zip->setPassword('123456');//设置压缩包的密码
+	    $zip->close();//关闭资源句柄
+	}else{
+	    echo '文件打开失败';
+	}
+
+```
 ### curl模拟post请求
 ```php
 	    //初始化
